@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://pgjka0ckfj5b"]
+
+[ext_resource type="PackedScene" uid="uid://v788uu1mfsoa" path="res://Scenes/Player/Player.tscn" id="1_0qb7v"]
+[ext_resource type="PackedScene" uid="uid://dxtqt5tqca7oe" path="res://Assets/Models/Time Room/time_room.tscn" id="2_u6wg7"]
+[ext_resource type="PackedScene" uid="uid://dyhcr0uhoxd7y" path="res://Scenes/Tools/WarpBox.tscn" id="3_2wu8y"]
+
+[node name="TimeRoom" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_0qb7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.66444, 6.97445)
+
+[node name="Time_Room" parent="." instance=ExtResource("2_u6wg7")]
+
+[node name="WarpBox" parent="." instance=ExtResource("3_2wu8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163614, -11.3988, -80.9762)
+scenePath = "res://Maps/CastleExterior2.tscn"

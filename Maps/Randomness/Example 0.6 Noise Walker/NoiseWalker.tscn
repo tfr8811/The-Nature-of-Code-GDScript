@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://vuxdanqraqn"]
+
+[ext_resource type="Script" uid="uid://5lyihr0x2tii" path="res://Maps/Randomness/Example 0.6 Noise Walker/noise_walker.gd" id="1_lyhl8"]
+
+[node name="NoiseWalker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="NoiseWalker" type="Node2D" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("1_lyhl8")

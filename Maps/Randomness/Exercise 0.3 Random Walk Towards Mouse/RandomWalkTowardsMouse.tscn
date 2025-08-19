@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxlrug574l27b"]
+
+[ext_resource type="Script" uid="uid://dla21r0n66i75" path="res://Maps/Randomness/Exercise 0.3 Random Walk Towards Mouse/mouse_walker.gd" id="1_3bhmr"]
+
+[node name="RandomWalkTowardsMouse" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="MouseWalker" type="Node2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(526, 324)
+script = ExtResource("1_3bhmr")
