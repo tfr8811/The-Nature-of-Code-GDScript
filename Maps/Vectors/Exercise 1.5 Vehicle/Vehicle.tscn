@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://y6fjyvvu28k3"]
+
+[ext_resource type="Script" uid="uid://b21077jj5n3t8" path="res://Maps/Vectors/Exercise 1.5 Vehicle/vector_vehicle.gd" id="1_85suh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bbvqw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_q7ihi"]
+
+[node name="Node2D" type="Node3D"]
+
+[node name="VectorVehicle" type="CharacterBody3D" parent="."]
+script = ExtResource("1_85suh")
+
+[node name="Camera3D" type="Camera3D" parent="VectorVehicle"]
+transform = Transform3D(1, 0, 0, 0, 0.956834, 0.290635, 0, -0.290635, 0.956834, 0, 1.49431, 2.45692)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VectorVehicle"]
+shape = SubResource("SphereShape3D_bbvqw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VectorVehicle"]
+mesh = SubResource("SphereMesh_q7ihi")

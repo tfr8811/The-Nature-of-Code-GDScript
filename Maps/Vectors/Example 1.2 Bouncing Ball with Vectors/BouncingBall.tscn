@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg8q33dqffm4h"]
+
+[ext_resource type="Script" uid="uid://comw0x0jla3k6" path="res://Maps/Vectors/Example 1.2 Bouncing Ball with Vectors/bouncingball.gd" id="1_pvwrf"]
+
+[node name="BouncingBall" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Bouncingball" type="Node2D" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("1_pvwrf")
