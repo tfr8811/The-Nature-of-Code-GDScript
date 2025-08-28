@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvjnc7xus2a3e"]
+
+[ext_resource type="Script" uid="uid://b3bo7ump32gd4" path="res://Maps/Vectors/Exercise 1.6 Perlin Noise Accelerator/perlin_accelerator.gd" id="1_7tl8u"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7tl8u"]
+noise_type = 3
+
+[node name="PerlinNoiseAccelerator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="PerlinAccelerator" type="Node2D" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("1_7tl8u")
+noise = SubResource("FastNoiseLite_7tl8u")
