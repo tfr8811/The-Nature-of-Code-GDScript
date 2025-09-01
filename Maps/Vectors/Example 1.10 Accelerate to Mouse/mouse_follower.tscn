@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm1hxxpndd4cl"]
+
+[ext_resource type="Script" uid="uid://dg1v0yhub24ot" path="res://Maps/Vectors/Example 1.10 Accelerate to Mouse/accelerate_to_mouse.gd" id="1_jijxr"]
+[ext_resource type="Texture2D" uid="uid://cfcibonrgjq58" path="res://icon.svg" id="2_avgl3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7tbr"]
+size = Vector2(128, 127)
+
+[node name="MouseFollower" type="CharacterBody2D"]
+script = ExtResource("1_jijxr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_avgl3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_n7tbr")
