@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://byfs1o6r3vdws"]
+
+[ext_resource type="PackedScene" uid="uid://dufwsln38xh1x" path="res://Maps/Forces/Gravitational Attraction/GravityPlayer.tscn" id="1_kdwjw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8evi7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kdwjw"]
+radius = 10.0
+height = 20.0
+
+[node name="Planet" type="Node2D"]
+
+[node name="GravityPlayer" parent="." instance=ExtResource("1_kdwjw")]
+position = Vector2(567, 86)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(497, 445)
+scale = Vector2(13.6691, 13.6691)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_8evi7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+mesh = SubResource("SphereMesh_kdwjw")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(164, 164)
+scale = Vector2(5.71464, 5.71464)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("CircleShape2D_8evi7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D2"]
+mesh = SubResource("SphereMesh_kdwjw")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(959, 209)
+scale = Vector2(8.70126, 8.70126)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("CircleShape2D_8evi7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D3"]
+mesh = SubResource("SphereMesh_kdwjw")

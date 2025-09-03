@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dufwsln38xh1x"]
+
+[ext_resource type="Script" uid="uid://bp2matl8x32j7" path="res://Maps/Forces/Gravitational Attraction/gravity_player.gd" id="1_fctyg"]
+[ext_resource type="Texture2D" uid="uid://cfcibonrgjq58" path="res://icon.svg" id="2_n704t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oitq2"]
+size = Vector2(60, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n704t"]
+radius = 261.926
+
+[node name="GravityPlayer" type="CharacterBody2D" node_paths=PackedStringArray("sight", "ground_detection")]
+script = ExtResource("1_fctyg")
+sight = NodePath("Area2D")
+ground_detection = NodePath("RayCast2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oitq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.48769, 0.48769)
+texture = ExtResource("2_n704t")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_n704t")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
