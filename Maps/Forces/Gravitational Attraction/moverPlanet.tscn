@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://3gu4m1yjdkuv"]
+
+[ext_resource type="Script" uid="uid://54rk2j5tdpk7" path="res://Maps/Forces/Gravitational Attraction/mover_planet.gd" id="1_ucjl2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbao0"]
+radius = 70.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ucjl2"]
+radius = 70.0
+height = 140.0
+
+[node name="MoverPlanet" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ucjl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cbao0")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_ucjl2")

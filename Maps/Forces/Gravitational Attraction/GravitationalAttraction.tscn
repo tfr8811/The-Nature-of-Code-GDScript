@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://biao2jaqj6dul"]
+
+[ext_resource type="Script" uid="uid://bwnsdo23yvj74" path="res://Maps/Forces/Gravitational Attraction/gravitational_attraction.gd" id="1_dyb4v"]
+[ext_resource type="PackedScene" uid="uid://3gu4m1yjdkuv" path="res://Maps/Forces/Gravitational Attraction/moverPlanet.tscn" id="2_ilcdp"]
+[ext_resource type="PackedScene" uid="uid://dufwsln38xh1x" path="res://Maps/Forces/Gravitational Attraction/GravityPlayer.tscn" id="3_2mjdq"]
+
+[node name="GravitationalAttraction" type="Node2D"]
+script = ExtResource("1_dyb4v")
+planet = ExtResource("2_ilcdp")
+
+[node name="GravityPlayer" parent="." instance=ExtResource("3_2mjdq")]
