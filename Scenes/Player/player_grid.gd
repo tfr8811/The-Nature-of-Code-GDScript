@@ -10,6 +10,10 @@ const STEP_SIZE = 64
 @export var raycastSLong : RayCast2D
 @export var raycastELong : RayCast2D
 @export var raycastWLong : RayCast2D
+@export var areaN : Area2D
+@export var areaS : Area2D
+@export var areaE : Area2D
+@export var areaW : Area2D
 var undoRedo = UndoRedo.new()
 var nextStep = Vector2(0, 0)
 var pushableBlock : PushableBlock
@@ -23,6 +27,12 @@ func _ready() -> void:
 	raycastELong.target_position.y = 0
 	raycastWLong.target_position.x = -STEP_SIZE * mapDimensions.x
 	raycastWLong.target_position.y = 0
+	# set the areas
+	areaN.position = raycastNLong.target_position
+	areaS.position = raycastSLong.target_position
+	areaE.position = raycastELong.target_position
+	areaW.position = raycastWLong.target_position
+	
 func _physics_process(delta):
 	nextStep = Vector2(0, 0)
 	if (Input.is_action_just_pressed("Backward")):
@@ -45,13 +55,21 @@ func _physics_process(delta):
 		elif pushEnabled && raycastE.get_collider().is_in_group("pushable"):
 			pushableBlock = raycastE.get_collider()
 			nextStep.x += STEP_SIZE
-	elif (Input.is_action_just_pressed("WarpSouth") && !raycastSLong.is_colliding()):
+	elif (Input.is_action_just_pressed("WarpSouth") 
+	&& !raycastSLong.is_colliding()
+	&& !areaS.has_overlapping_bodies()):
 		nextStep.y += STEP_SIZE * mapDimensions.y
-	elif (Input.is_action_just_pressed("WarpNorth") && !raycastNLong.is_colliding()):
+	elif (Input.is_action_just_pressed("WarpNorth") 
+	&& !raycastNLong.is_colliding()
+	&& !areaN.has_overlapping_bodies()):
 		nextStep.y -= STEP_SIZE * mapDimensions.y
-	elif (Input.is_action_just_pressed("WarpWest") && !raycastWLong.is_colliding()):
+	elif (Input.is_action_just_pressed("WarpWest") 
+	&& !raycastWLong.is_colliding()
+	&& !areaW.has_overlapping_bodies()):
 		nextStep.x -= STEP_SIZE * mapDimensions.x
-	elif (Input.is_action_just_pressed("WarpEast") && !raycastELong.is_colliding()):
+	elif (Input.is_action_just_pressed("WarpEast") 
+	&& !raycastELong.is_colliding()
+	&& !areaE.has_overlapping_bodies()):
 		nextStep.x += STEP_SIZE * mapDimensions.x
 	elif (Input.is_action_just_pressed("Undo")):
 		undoRedo.undo()
