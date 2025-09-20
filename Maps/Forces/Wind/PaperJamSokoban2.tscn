@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=4 uid="uid://brl76wxvji73o"]
+
+[ext_resource type="PackedScene" uid="uid://cwvrlcimes2bm" path="res://Maps/Forces/Wind/MazeSmall.tscn" id="1_w73nw"]
+[ext_resource type="PackedScene" uid="uid://vnd17gwb7wsw" path="res://Scenes/Player/PlayerGrid.tscn" id="2_qyi80"]
+[ext_resource type="PackedScene" uid="uid://wdroashuflex" path="res://Maps/Forces/Wind/DeathPellet.tscn" id="3_756ey"]
+[ext_resource type="PackedScene" uid="uid://bjliv6hlj7hgi" path="res://Maps/Forces/Wind/Finish.tscn" id="4_qyi80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho7s2"]
+size = Vector2(769, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkugj"]
+size = Vector2(22.25, 511)
+
+[node name="PaperJam" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_w73nw")]
+tile_map_data = PackedByteArray("AAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAACAAMAAAAAAAAAAAACAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAGAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAACAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAcAAAAAAAAAAAAJAAcAAAAAAAAAAAAKAAcAAAAAAAAAAAALAAcAAAAAAAAAAAALAAYAAAAAAAAAAAALAAUAAAAAAAAAAAALAAQAAAAAAAAAAAALAAMAAAAAAAAAAAALAAIAAAAAAAAAAAALAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAABAAQAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAABAAMAAAAAAAAAAAA=")
+
+[node name="Player2d" parent="." instance=ExtResource("2_qyi80")]
+position = Vector2(96, 160)
+mapDimensions = Vector2(6, 4)
+pushEnabled = true
+
+[node name="DeathPellet" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(96, 96)
+
+[node name="DeathPellet3" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(224, 96)
+
+[node name="DeathPellet4" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(608, 96)
+
+[node name="DeathPellet5" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(608, 352)
+
+[node name="DeathPellet6" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(608, 416)
+
+[node name="DeathPellet7" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(224, 352)
+
+[node name="DeathPellet8" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(224, 416)
+
+[node name="DeathPellet2" parent="." instance=ExtResource("3_756ey")]
+position = Vector2(480, 160)
+
+[node name="barrier" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier"]
+position = Vector2(385, -10)
+shape = SubResource("RectangleShape2D_ho7s2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="barrier"]
+position = Vector2(384.5, 522)
+shape = SubResource("RectangleShape2D_ho7s2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="barrier"]
+position = Vector2(-10.125, 255.5)
+shape = SubResource("RectangleShape2D_vkugj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="barrier"]
+position = Vector2(781, 256)
+shape = SubResource("RectangleShape2D_vkugj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1314.0
+offset_top = 9.0
+offset_right = 1654.0
+offset_bottom = 851.0
+theme_override_font_sizes/normal_font_size = 24
+text = "This is \"Paralabyrinth\"
+
+The player must get to the other side of the labyrinth using 2 movement options.
+
+The first is normal movement.
+This is done using the keys: W, A, S, D
+
+The second is teleportation. This is done using the keys: 
+I, J, K, L
+
+The player may teleport to the corresponding position in the adjacent mazes.
+
+The player's path of teleportation may not cross a Red Bullet"
+
+[node name="Finish" parent="." instance=ExtResource("4_qyi80")]
+position = Vector2(671, 414)
+target_scene_path = "res://Maps/Forces/Wind/PaperJamSokoban3.tscn"

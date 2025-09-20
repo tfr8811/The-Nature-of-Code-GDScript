@@ -1,7 +1,7 @@
 extends CharacterBody2D
-
 const STEP_SIZE = 64
-var mapDimensions = Vector2(9, 6)
+@export var mapDimensions = Vector2(9, 6)
+@export var pushEnabled : bool
 @export var raycastN : RayCast2D
 @export var raycastS : RayCast2D
 @export var raycastE : RayCast2D
@@ -12,16 +12,39 @@ var mapDimensions = Vector2(9, 6)
 @export var raycastWLong : RayCast2D
 var undoRedo = UndoRedo.new()
 var nextStep = Vector2(0, 0)
+var pushableBlock : PushableBlock
+var illegalMove = false
+func _ready() -> void:
+	raycastNLong.target_position.y = -STEP_SIZE * mapDimensions.y
+	raycastNLong.target_position.x = 0
+	raycastSLong.target_position.y = STEP_SIZE * mapDimensions.y
+	raycastSLong.target_position.x = 0
+	raycastELong.target_position.x = STEP_SIZE * mapDimensions.x
+	raycastELong.target_position.y = 0
+	raycastWLong.target_position.x = -STEP_SIZE * mapDimensions.x
+	raycastWLong.target_position.y = 0
 func _physics_process(delta):
 	nextStep = Vector2(0, 0)
-	if (Input.is_action_just_pressed("Backward") && !raycastS.is_colliding()):
-		nextStep.y += STEP_SIZE
-	elif (Input.is_action_just_pressed("Forward") && !raycastN.is_colliding()):
-		nextStep.y -= STEP_SIZE
-	elif (Input.is_action_just_pressed("Left") && !raycastW.is_colliding()):
-		nextStep.x -= STEP_SIZE
-	elif (Input.is_action_just_pressed("Right") && !raycastE.is_colliding()):
-		nextStep.x += STEP_SIZE
+	if (Input.is_action_just_pressed("Backward")):
+		if !raycastS.is_colliding(): nextStep.y += STEP_SIZE
+		elif pushEnabled && raycastS.get_collider().is_in_group("pushable"):
+			pushableBlock = raycastS.get_collider()
+			nextStep.y += STEP_SIZE
+	elif (Input.is_action_just_pressed("Forward")):
+		if !raycastN.is_colliding(): nextStep.y -= STEP_SIZE
+		elif pushEnabled && raycastN.get_collider().is_in_group("pushable"):
+			pushableBlock = raycastN.get_collider()
+			nextStep.y -= STEP_SIZE
+	elif (Input.is_action_just_pressed("Left")):
+		if !raycastW.is_colliding(): nextStep.x -= STEP_SIZE
+		elif pushEnabled && raycastW.get_collider().is_in_group("pushable"):
+			pushableBlock = raycastW.get_collider()
+			nextStep.x -= STEP_SIZE
+	elif (Input.is_action_just_pressed("Right")):
+		if !raycastE.is_colliding(): nextStep.x += STEP_SIZE
+		elif pushEnabled && raycastE.get_collider().is_in_group("pushable"):
+			pushableBlock = raycastE.get_collider()
+			nextStep.x += STEP_SIZE
 	elif (Input.is_action_just_pressed("WarpSouth") && !raycastSLong.is_colliding()):
 		nextStep.y += STEP_SIZE * mapDimensions.y
 	elif (Input.is_action_just_pressed("WarpNorth") && !raycastNLong.is_colliding()):
@@ -33,10 +56,25 @@ func _physics_process(delta):
 	elif (Input.is_action_just_pressed("Undo")):
 		undoRedo.undo()
 	if nextStep.length() != 0:
-		undoRedo.create_action("Move Player")
-		undoRedo.add_do_method(MovePlayer.bind(nextStep))
-		undoRedo.add_undo_method(MovePlayer.bind(-nextStep))
-		undoRedo.commit_action()
+		if pushableBlock != null:
+			if (pushableBlock.CanMove(nextStep)):
+				undoRedo.create_action("Push Block")
+				undoRedo.add_do_method(PushBlock.bind(nextStep, pushableBlock))
+				undoRedo.add_undo_method(PushBlock.bind(-nextStep, pushableBlock))
+				undoRedo.commit_action()
+		else:
+			undoRedo.create_action("Move Player")
+			undoRedo.add_do_method(MovePlayer.bind(nextStep))
+			undoRedo.add_undo_method(MovePlayer.bind(-nextStep))
+			undoRedo.commit_action()
+	pushableBlock = null
+	# restart
+	if (Input.is_action_just_pressed("Reset")):
+		get_tree().reload_current_scene()
 
 func MovePlayer(step : Vector2):
 	position += step
+
+func PushBlock(step : Vector2, block : Area2D):
+	position += step
+	block.position += step

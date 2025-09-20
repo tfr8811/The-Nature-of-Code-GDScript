@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=4 uid="uid://10rdixa1a07j"]
+
+[ext_resource type="PackedScene" uid="uid://cwvrlcimes2bm" path="res://Maps/Forces/Wind/MazeSmall.tscn" id="1_mwsv2"]
+[ext_resource type="PackedScene" uid="uid://vnd17gwb7wsw" path="res://Scenes/Player/PlayerGrid.tscn" id="2_1w7bp"]
+[ext_resource type="PackedScene" uid="uid://wdroashuflex" path="res://Maps/Forces/Wind/DeathPellet.tscn" id="3_psqbp"]
+[ext_resource type="PackedScene" uid="uid://bjliv6hlj7hgi" path="res://Maps/Forces/Wind/Finish.tscn" id="4_wu4tn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho7s2"]
+size = Vector2(1150, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkugj"]
+size = Vector2(22.25, 768)
+
+[node name="PaperJam" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_mwsv2")]
+tile_map_data = PackedByteArray("AAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAACAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAAAAEAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAARAAoAAAAAAAAAAAARAAkAAAAAAAAAAAARAAgAAAAAAAAAAAARAAcAAAAAAAAAAAARAAYAAAAAAAAAAAARAAUAAAAAAAAAAAARAAQAAAAAAAAAAAARAAMAAAAAAAAAAAARAAIAAAAAAAAAAAARAAEAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAcAAAAAAAAAAAAKAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAQAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAOAAYAAAAAAAAAAAANAAYAAAAAAAAAAAAMAAYAAAAAAAAAAAALAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAACAAkAAAAAAAAAAAAEAAcAAAAAAAAAAAANAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAPAAcAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAKAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAACAAIAAAAAAAAAAAACAAgAAAAAAAAAAAALAAgAAAAAAAAAAAALAAIAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAQAAMAAAAAAAAAAAACAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAALAAcAAAAAAAAAAAAMAAcAAAAAAAAAAAAHAAMAAAAAAAAAAAA=")
+
+[node name="Player2d" parent="." instance=ExtResource("2_1w7bp")]
+position = Vector2(224, 160)
+pushEnabled = true
+
+[node name="DeathPellet" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(288, 160)
+
+[node name="DeathPellet3" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(288, 224)
+
+[node name="DeathPellet11" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(352, 480)
+
+[node name="DeathPellet4" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(864, 160)
+
+[node name="DeathPellet5" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(864, 672)
+
+[node name="DeathPellet6" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(800, 608)
+
+[node name="DeathPellet7" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(288, 544)
+
+[node name="DeathPellet8" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(288, 608)
+
+[node name="DeathPellet2" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(864, 224)
+
+[node name="DeathPellet9" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(864, 544)
+
+[node name="DeathPellet10" parent="." instance=ExtResource("3_psqbp")]
+position = Vector2(864, 608)
+
+[node name="barrier" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier"]
+position = Vector2(575, -10)
+shape = SubResource("RectangleShape2D_ho7s2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="barrier"]
+position = Vector2(575, 778)
+shape = SubResource("RectangleShape2D_ho7s2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="barrier"]
+position = Vector2(-10.125, 384)
+shape = SubResource("RectangleShape2D_vkugj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="barrier"]
+position = Vector2(1163, 385)
+shape = SubResource("RectangleShape2D_vkugj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1314.0
+offset_top = 9.0
+offset_right = 1654.0
+offset_bottom = 851.0
+theme_override_font_sizes/normal_font_size = 24
+text = "This is \"Paralabyrinth\"
+
+The player must get to the other side of the labyrinth using 2 movement options.
+
+The first is normal movement.
+This is done using the keys: W, A, S, D
+
+The second is teleportation. This is done using the keys: 
+I, J, K, L
+
+The player may teleport to the corresponding position in the adjacent mazes.
+
+The player's path of teleportation may not cross a Red Bullet"
+
+[node name="Finish" parent="." instance=ExtResource("4_wu4tn")]
+position = Vector2(96, 223)
+target_scene_path = "res://Maps/Forces/Wind/PaperJamSokoban1.tscn"

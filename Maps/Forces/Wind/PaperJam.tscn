@@ -17,6 +17,7 @@ tile_map_data = PackedByteArray("AAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAA
 
 [node name="Player2d" parent="." instance=ExtResource("2_1445v")]
 position = Vector2(96, 544)
+pushEnabled = true
 
 [node name="DeathPellet" parent="." instance=ExtResource("3_ho7s2")]
 position = Vector2(160, 544)
@@ -85,3 +86,23 @@ shape = SubResource("RectangleShape2D_vkugj")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="barrier"]
 position = Vector2(1290.75, 416)
 shape = SubResource("RectangleShape2D_vkugj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1314.0
+offset_top = 9.0
+offset_right = 1654.0
+offset_bottom = 851.0
+theme_override_font_sizes/normal_font_size = 24
+text = "This is \"Paralabyrinth\"
+
+The player must get to the other side of the labyrinth using 2 movement options.
+
+The first is normal movement.
+This is done using the keys: W, A, S, D
+
+The second is teleportation. This is done using the keys: 
+I, J, K, L
+
+The player may teleport to the corresponding position in the adjacent mazes.
+
+The player's path of teleportation may not cross a Red Bullet"
