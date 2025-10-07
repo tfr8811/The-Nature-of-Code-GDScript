@@ -35,6 +35,8 @@ func _physics_process(delta: float) -> void:
 	acceleration += -velocity/2
 	velocity += acceleration * delta
 	acceleration *= 0
+	if get_nearest_body() != null && get_nearest_body() is MoverPlanet:
+		global_position += get_nearest_body().velocity * delta
 	move_and_slide()
 
 func get_nearest_body():
