@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://lc80nggckrrc"]
+[gd_scene load_steps=4 format=3 uid="uid://lc80nggckrrc"]
 
 [ext_resource type="PackedScene" uid="uid://dufwsln38xh1x" path="res://Maps/Forces/Gravitational Attraction/GravityPlayer.tscn" id="1_84suh"]
 [ext_resource type="PackedScene" uid="uid://b5wigbx6hegpb" path="res://Maps/Forces/Gravitational Attraction/BasicCirclePlanet.tscn" id="2_wpsyg"]
+[ext_resource type="PackedScene" uid="uid://boy2i3jpqdfcv" path="res://Maps/Forces/Gravitational Attraction/MovingPlatform.tscn" id="3_wpsyg"]
 
 [node name="GravityLevel" type="Node2D"]
 
@@ -19,3 +20,6 @@ ignore_rotation = false
 [node name="BasicCirclePlanet2" parent="." instance=ExtResource("2_wpsyg")]
 position = Vector2(402, 301)
 scale = Vector2(0.5270967, 0.5270967)
+
+[node name="MovingPlatform" parent="." instance=ExtResource("3_wpsyg")]
+position = Vector2(577, 94)

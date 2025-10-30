@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://boy2i3jpqdfcv"]
+
+[ext_resource type="Script" uid="uid://dyeo5746v3as7" path="res://Maps/Forces/Gravitational Attraction/moving_platform.gd" id="1_xmtbs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujvbp"]
+size = Vector2(20, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xmtbs"]
+size = Vector3(20, 4, 1)
+
+[node name="MovingPlatform" type="AnimatableBody2D"]
+scale = Vector2(10, 10)
+collision_layer = 3
+collision_mask = 3
+sync_to_physics = false
+script = ExtResource("1_xmtbs")
+speed = -100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ujvbp")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("BoxMesh_xmtbs")

@@ -17,7 +17,8 @@ func _physics_process(delta: float) -> void:
 	if get_nearest_body() != null:
 		var nearest_body : Node2D = get_nearest_body()
 		var distance_to_nearest_body = nearest_body.global_position.distance_to(self.global_position)
-		up_direction = nearest_body.global_position.direction_to(self.global_position).normalized()
+		#up_direction = nearest_body.global_position.direction_to(self.global_position).normalized()
+		up_direction = find_surface_normal(nearest_body)
 		# Add the gravity.
 		acceleration += -up_direction * distance_to_nearest_body * distance_to_nearest_body * delta
 		self.global_rotation = up_direction.angle()+PI/2
@@ -76,3 +77,19 @@ func find_closest_dist(overlapper: CollisionObject2D) -> float:
 	else:
 		# if nothing was hit (rare, maybe if overlapper is disabled)
 		return _ray_length
+func find_surface_normal(overlapper: CollisionObject2D) -> Vector2:
+	var _space_state = get_world_2d().direct_space_state
+	var _to_center = overlapper.global_position - global_position
+	var _ray_length = _to_center.length()
+	var _query = PhysicsRayQueryParameters2D.create(global_position, overlapper.global_position)
+	_query.collide_with_areas = true
+	_query.collide_with_bodies = true
+	_query.exclude = [self]
+
+	var _result = _space_state.intersect_ray(_query)
+
+	if _result:
+		return _result.normal
+	else:
+		# if nothing was hit (rare, maybe if overlapper is disabled)
+		return -_to_center.normalized()
