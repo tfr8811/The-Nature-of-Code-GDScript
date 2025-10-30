@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://lc80nggckrrc"]
+
+[ext_resource type="PackedScene" uid="uid://dufwsln38xh1x" path="res://Maps/Forces/Gravitational Attraction/GravityPlayer.tscn" id="1_84suh"]
+[ext_resource type="PackedScene" uid="uid://b5wigbx6hegpb" path="res://Maps/Forces/Gravitational Attraction/BasicCirclePlanet.tscn" id="2_wpsyg"]
+
+[node name="GravityLevel" type="Node2D"]
+
+[node name="GravityPlayer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_84suh")]
+position = Vector2(586, 437)
+camera = NodePath("../Camera2D")
+
+[node name="BasicCirclePlanet" parent="." instance=ExtResource("2_wpsyg")]
+position = Vector2(579, 797.00006)
+scale = Vector2(3.061661, 3.061661)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false

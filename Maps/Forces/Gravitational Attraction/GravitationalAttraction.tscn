@@ -8,4 +8,8 @@
 script = ExtResource("1_dyb4v")
 planet = ExtResource("2_ilcdp")
 
-[node name="GravityPlayer" parent="." instance=ExtResource("3_2mjdq")]
+[node name="GravityPlayer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_2mjdq")]
+camera = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false

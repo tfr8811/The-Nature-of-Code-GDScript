@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 40000.0
 const AIR_SPEED = 500.0
 @export var sight : Area2D
 @export var ground_detection : RayCast2D
+@export var camera : Camera2D
 var acceleration : Vector2
 
 func _physics_process(delta: float) -> void:
@@ -38,6 +39,11 @@ func _physics_process(delta: float) -> void:
 	if get_nearest_body() != null && get_nearest_body() is MoverPlanet:
 		global_position += get_nearest_body().velocity * delta
 	move_and_slide()
+	# update camera
+	# remapping to make rotation slower if the player swaps planets, but faster for general movement
+	var rotation_factor = remap(abs(angle_difference(camera.global_rotation,global_rotation)), 0, PI, 5, 1)
+	camera.global_rotation = lerp_angle(camera.global_rotation, global_rotation, rotation_factor * delta)
+	camera.global_position = lerp(camera.global_position, global_position, rotation_factor * delta)
 
 func get_nearest_body():
 	var nearest_body
