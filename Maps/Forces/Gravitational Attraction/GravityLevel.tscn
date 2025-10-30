@@ -15,3 +15,7 @@ scale = Vector2(3.061661, 3.061661)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
+
+[node name="BasicCirclePlanet2" parent="." instance=ExtResource("2_wpsyg")]
+position = Vector2(402, 301)
+scale = Vector2(0.5270967, 0.5270967)

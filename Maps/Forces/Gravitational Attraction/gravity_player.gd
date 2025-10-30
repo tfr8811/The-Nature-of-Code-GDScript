@@ -53,8 +53,26 @@ func get_nearest_body():
 		if (overlappers.size() > 0):
 			for overlapper in overlappers:
 				if overlapper == nearest_body: continue
-				var dist1 = nearest_body.global_position.distance_to(self.global_position)
-				var dist2 = overlapper.global_position.distance_to(self.global_position)
+				#var dist1 = nearest_body.global_position.distance_to(self.global_position)
+				#var dist2 = overlapper.global_position.distance_to(self.global_position)
+				var dist1 = find_closest_dist(nearest_body)
+				var dist2 = find_closest_dist(overlapper)
 				if dist2 < dist1:
 					nearest_body = overlapper
 	return nearest_body
+func find_closest_dist(overlapper: CollisionObject2D) -> float:
+	var _space_state = get_world_2d().direct_space_state
+	var _to_center = overlapper.global_position - global_position
+	var _ray_length = _to_center.length()
+	var _query = PhysicsRayQueryParameters2D.create(global_position, overlapper.global_position)
+	_query.collide_with_areas = true
+	_query.collide_with_bodies = true
+	_query.exclude = [self]
+
+	var _result = _space_state.intersect_ray(_query)
+
+	if _result:
+		return global_position.distance_to(_result.position)
+	else:
+		# if nothing was hit (rare, maybe if overlapper is disabled)
+		return _ray_length
