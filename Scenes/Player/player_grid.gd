@@ -107,3 +107,15 @@ func MovePlayer(step : Vector2):
 func PushBlock(step : Vector2, block : Area2D):
 	position += step
 	block.position += step
+func CanAct(initialPress : bool, delta : float) -> bool:
+	var _canAct = false
+	if (initialPress):
+		_canAct = true
+		undoCooldownTimer = undoInitialCooldown
+	else:
+		if undoCooldownTimer <= 0:
+			_canAct = true
+			undoCooldownTimer = undoHeldCooldown
+		else:
+			undoCooldownTimer -= delta
+	return _canAct
