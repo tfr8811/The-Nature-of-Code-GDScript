@@ -18,6 +18,10 @@ var undoRedo = UndoRedo.new()
 var nextStep = Vector2(0, 0)
 var pushableBlock : PushableBlock
 var illegalMove = false
+# for z hold behaviour
+var undoInitialCooldown = 0.5
+var undoHeldCooldown = 0.1
+var undoCooldownTimer = 0
 func _ready() -> void:
 	raycastNLong.target_position.y = -STEP_SIZE * mapDimensions.y
 	raycastNLong.target_position.x = 0
@@ -73,6 +77,13 @@ func _physics_process(delta):
 		nextStep.x += STEP_SIZE * mapDimensions.x
 	elif (Input.is_action_just_pressed("Undo")):
 		undoRedo.undo()
+		undoCooldownTimer = undoInitialCooldown
+	elif (Input.is_action_pressed("Undo")):
+		if undoCooldownTimer <= 0:
+			undoRedo.undo()
+			undoCooldownTimer = undoHeldCooldown
+		else:
+			undoCooldownTimer -= delta
 	if nextStep.length() != 0:
 		if pushableBlock != null:
 			if (pushableBlock.CanMove(nextStep)):
